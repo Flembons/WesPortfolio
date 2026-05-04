@@ -6,7 +6,7 @@ export default function Layout() {
         <>
             <Header />
 
-            <main className="flex flex-col bg-gradient-to-b from-red-100 to-white min-h-screen">
+            <main className="flex flex-col bg-gradient-to-b from-amber-100 to-red-200 min-h-screen p-4">
                 <Outlet />
             </main>
         </>

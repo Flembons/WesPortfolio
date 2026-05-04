@@ -1,7 +1,56 @@
 @import "tailwindcss";
 
+/* Avenir Next */
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('/fonts/AvenirNext-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out-down {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(14px); }
+}
+
 @layer components {
     .header-btn {
-        @apply text-3xl md:text-lg  font-medium text-gray-700 hover:text-gray-900 hover:underline transition-colors duration-300 ease-in-out;
+        @apply text-5xl md:text-lg  font-medium text-gray-700 hover:text-gray-900 hover:underline transition-colors duration-300 ease-in-out;
     }
+
+    .mobile-nav-overlay {
+        animation: fade-in 200ms ease-out forwards;
+    }
+
+    .mobile-nav-overlay-exit {
+        animation: fade-out 300ms ease-in forwards;
+    }
+
+    .mobile-nav-link {
+        opacity: 0;
+        animation: fade-in-up 300ms ease-out forwards;
+    }
+
+    .mobile-nav-link-exit {
+        animation: fade-out-down 160ms ease-in forwards;
+    }
+}
+
+body {
+    font-family: 'Avenir Next', sans-serif;
 }

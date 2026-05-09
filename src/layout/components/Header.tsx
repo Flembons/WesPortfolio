@@ -1,41 +1,56 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import NavDropdown from "./NavDropdown";
+import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
-const NAV_LINKS = [
+interface NavItem {
+  to?: string;
+  label: string;
+  children?: { to: string; label: string }[];
+}
+
+const NAV_LINKS: NavItem[] = [
   { to: "/", label: "Home" },
-  { to: "/film", label: "Film" },
+  {
+    label: "Film",
+    children: [
+      { to: "/film/br2tb", label: "Bay Ridge to the Bronx" },
+      { to: "/film/burp", label: "BURP" },
+    ],
+  },
   { to: "/documentary", label: "Documentary" },
   { to: "/promos", label: "Promos" },
   { to: "/contact", label: "Contact" },
 ];
 
 const OPEN_DELAYS = [60, 120, 180, 240, 300];
-// Reverse stagger on close — last item exits first
 const CLOSE_DELAYS = [120, 90, 60, 30, 0];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
+    null,
+  );
 
-  const openMenu = () => setIsMenuOpen(true);
-  const closeMenu = () => setIsClosing(true);
+  const openMenu = () => {
+    setOpenMobileDropdown(null);
+    setIsMenuOpen(true);
+  };
+  const closeMenu = () => {
+    setIsClosing(true);
+  };
   const toggleMenu = () => (isMenuOpen ? closeMenu() : openMenu());
 
   const handleOverlayAnimationEnd = (e: React.AnimationEvent<HTMLElement>) => {
-    // Only react to the overlay's own animation end, not bubbled child events
     if (isClosing && e.target === e.currentTarget) {
       setIsMenuOpen(false);
       setIsClosing(false);
     }
   };
 
-  // Prevent scrolling when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
   }, [isMenuOpen]);
 
   useEffect(() => {
@@ -57,26 +72,39 @@ export default function Header() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center justify-between gap-6 text-lg">
-        {NAV_LINKS.map((link) => (
-          <Link key={link.to} to={link.to} className="header-btn">
-            {link.label}
-          </Link>
-        ))}
+        <Link to="/" className="header-btn">
+          Home
+        </Link>
+        <NavDropdown
+          label="Film"
+          items={[
+            { to: "/film/br2tb", label: "Bay Ridge to the Bronx" },
+            { to: "/film/burp", label: "BURP" },
+          ]}
+        />
+        <Link to="/documentary" className="header-btn">
+          Documentary
+        </Link>
+        <Link to="/promos" className="header-btn">
+          Promos
+        </Link>
+        <Link to="/contact" className="header-btn">
+          Contact
+        </Link>
       </nav>
 
       {/* Mobile navigation */}
       <div className="md:hidden">
-        {/* Hamburger menu */}
         <button
           onClick={toggleMenu}
           className={`flex flex-col cursor-pointer transition-all duration-300 ease-in-out ${isMenuOpen && !isClosing ? "space-y-0" : "space-y-1"}`}
         >
           <div
             className={`w-6 h-0.5 bg-current transition-all duration-300 ease-in-out origin-center ${isMenuOpen && !isClosing ? "translate-y-0 rotate-45" : ""}`}
-          ></div>
+          />
           <div
             className={`w-6 h-0.5 bg-current transition-all duration-300 ease-in-out origin-center ${isMenuOpen && !isClosing ? "-translate-y-0.5 -rotate-45" : ""}`}
-          ></div>
+          />
         </button>
 
         {isMenuOpen && (
@@ -84,19 +112,59 @@ export default function Header() {
             className={`fixed top-16 inset-0 bg-white z-50 flex flex-col items-start justify-center gap-3 p-8 ${isClosing ? "mobile-nav-overlay-exit" : "mobile-nav-overlay"}`}
             onAnimationEnd={handleOverlayAnimationEnd}
           >
-            {NAV_LINKS.map((link, i) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`header-btn ${isClosing ? "mobile-nav-link-exit" : "mobile-nav-link"}`}
-                style={{
-                  animationDelay: `${isClosing ? CLOSE_DELAYS[i] : OPEN_DELAYS[i]}ms`,
-                }}
-                onClick={closeMenu}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((item, i) =>
+              item.children ? (
+                <div
+                  key={item.label}
+                  className={`${isClosing ? "mobile-nav-link-exit" : "mobile-nav-link"}`}
+                  style={{
+                    animationDelay: `${isClosing ? CLOSE_DELAYS[i] : OPEN_DELAYS[i]}ms`,
+                  }}
+                >
+                  <button
+                    className="header-btn flex items-center gap-1 cursor-pointer"
+                    onClick={() =>
+                      setOpenMobileDropdown(
+                        openMobileDropdown === item.label ? null : item.label,
+                      )
+                    }
+                  >
+                    {item.label}
+                    <ChevronDownIcon
+                      className={`w-8 h-8 transition-transform duration-300 ${openMobileDropdown === item.label ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <div
+                    className={`grid overflow-hidden transition-[grid-template-rows,padding] duration-300 ease-in-out ${openMobileDropdown === item.label ? "grid-rows-[1fr] pt-3" : "grid-rows-[0fr] pt-0"}`}
+                  >
+                    <div className="min-h-0 flex flex-col gap-2 pl-4">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          className="text-2xl font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"
+                          onClick={closeMenu}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.to}
+                  to={item.to!}
+                  className={`header-btn ${isClosing ? "mobile-nav-link-exit" : "mobile-nav-link"}`}
+                  style={{
+                    animationDelay: `${isClosing ? CLOSE_DELAYS[i] : OPEN_DELAYS[i]}ms`,
+                  }}
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
         )}
       </div>

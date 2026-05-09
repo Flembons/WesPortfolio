@@ -9,10 +9,12 @@ const BR2TB_STILLS = [
   "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AKkZDwVrfisBdXsvHdLlF-M/BR2TB%20STILLS/COLOR%2002_01_03_11_11.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=39lwki68&raw=1",
 ];
 
-export default function Narrative() {
+export default function BR2TB() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-semibold mb-4">Bay Ridge to the Bronx</h2>
+      <h2 className="text-3xl italic font-semibold mb-4">
+        Bay Ridge to the Bronx
+      </h2>
       <p className="text-gray-600 mb-6 max-w-2xl">
         This short film follows Tony, a young man from Bay Ridge whose parents
         are away. After attending confession at his local church, he receives a

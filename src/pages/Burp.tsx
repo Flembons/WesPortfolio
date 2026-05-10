@@ -13,7 +13,7 @@ export default function Burp() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <h2 className="text-3xl italic font-semibold mb-4">BURP</h2>
-      <p className="text-gray-600 mb-6 max-w-2xl">
+      <p className="text-site-muted mb-6 max-w-2xl">
         When a young woman hesitates on the day of her abortion, she's pulled
         into the surreal underworld of Manhattan's Chinatown — where an opera
         singer, two bumbling thugs, and a cat-Xanax ring fronting as a dumpling

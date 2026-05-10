@@ -1,9 +1,7 @@
+import { wsrv } from "../lib/wsrv";
+
 const CONTACT_IMG =
   "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AAjVG8Gm1_KWfe4jQdDvKJU/CharlieDay1.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=li26do9i&raw=1";
-
-function wsrv(url: string, width = 1200, quality = 80) {
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp`;
-}
 
 export default function Contact() {
   return (

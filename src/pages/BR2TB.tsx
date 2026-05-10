@@ -1,4 +1,4 @@
-import StillsGallery from "../components/StillsGallery";
+import StillsGallery from "./components/StillsGallery";
 
 const BR2TB_STILLS = [
   "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AHoqTlxc6EpBgzYGUen21oQ/BR2TB%20STILLS/COLOR%2002_01_00_17_13.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=aahzlxb7&raw=1",

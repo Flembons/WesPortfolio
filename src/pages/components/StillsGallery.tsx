@@ -1,8 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-
-function wsrv(url: string, width = 1200, quality = 80): string {
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp`;
-}
+import { wsrv } from "../../lib/wsrv";
 
 interface StillsGalleryProps {
   images: string[];
@@ -51,12 +48,18 @@ export default function StillsGallery({
         if (timerRef.current) clearInterval(timerRef.current);
       }}
       onMouseLeave={startTimer}
-      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0].clientX;
+      }}
       onTouchEnd={(e) => {
         if (touchStartX.current === null) return;
         const diff = touchStartX.current - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 40) {
-          goTo(diff > 0 ? (current + 1) % images.length : (current - 1 + images.length) % images.length);
+          goTo(
+            diff > 0
+              ? (current + 1) % images.length
+              : (current - 1 + images.length) % images.length,
+          );
         } else {
           showControlsBriefly();
         }

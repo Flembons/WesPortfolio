@@ -14,7 +14,16 @@ export default function StillsGallery({
   interval = 5000,
 }: StillsGalleryProps) {
   const [current, setCurrent] = useState(0);
+  const [mobileControls, setMobileControls] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const controlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showControlsBriefly = () => {
+    setMobileControls(true);
+    if (controlsTimerRef.current) clearTimeout(controlsTimerRef.current);
+    controlsTimerRef.current = setTimeout(() => setMobileControls(false), 2000);
+  };
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -42,6 +51,17 @@ export default function StillsGallery({
         if (timerRef.current) clearInterval(timerRef.current);
       }}
       onMouseLeave={startTimer}
+      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (touchStartX.current === null) return;
+        const diff = touchStartX.current - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+          goTo(diff > 0 ? (current + 1) % images.length : (current - 1 + images.length) % images.length);
+        } else {
+          showControlsBriefly();
+        }
+        touchStartX.current = null;
+      }}
     >
       {images.map((src, i) => (
         <img
@@ -54,13 +74,13 @@ export default function StillsGallery({
 
       <button
         onClick={() => goTo((current - 1 + images.length) % images.length)}
-        className="absolute cursor-pointer left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl"
+        className={`absolute cursor-pointer left-4 top-1/2 -translate-y-1/2 ${mobileControls ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl`}
       >
         ‹
       </button>
       <button
         onClick={() => goTo((current + 1) % images.length)}
-        className="absolute cursor-pointer right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl"
+        className={`absolute cursor-pointer right-4 top-1/2 -translate-y-1/2 ${mobileControls ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl`}
       >
         ›
       </button>

@@ -37,12 +37,12 @@ export default function NavDropdown({ label, items }: NavDropdownProps) {
       {isOpen && (
         <>
           <div className="absolute top-full left-0 w-full h-2" />
-          <div className="absolute top-full left-0 mt-2 w-48 bg-white border rounded shadow-lg z-10 overflow-hidden">
+          <div className="absolute top-full left-0 mt-2 w-48 bg-site-bg border border-site-border rounded shadow-sm z-10 overflow-hidden">
             {items.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                className="block px-4 py-2 text-sm text-site-text hover:text-site-accent transition-colors duration-150"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

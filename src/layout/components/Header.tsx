@@ -65,7 +65,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="flex h-16 justify-between items-center p-4 w-full border-b shadow-sm">
+    <header className="flex h-16 justify-between items-center p-4 w-full border-b border-site-border bg-site-bg">
       <Link to="/" className="text-xl font-medium">
         Wes Flemmons
       </Link>
@@ -142,7 +142,7 @@ export default function Header() {
                         <Link
                           key={child.to}
                           to={child.to}
-                          className="text-2xl font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"
+                          className="text-2xl font-medium text-site-text hover:text-site-accent transition-colors duration-300"
                           onClick={closeMenu}
                         >
                           {child.label}

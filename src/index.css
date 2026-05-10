@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+    --color-site-bg:      #FAFAF8;
+    --color-site-text:    #1A1A1A;
+    --color-site-accent:  #C8A882;
+    --color-site-border:  #E5E0D8;
+    --color-site-muted:   #8A847E;
+}
+
 /* Avenir Next */
 @font-face {
     font-family: 'Avenir Next';
@@ -30,7 +38,7 @@
 
 @layer components {
     .header-btn {
-        @apply text-5xl md:text-lg  font-medium text-gray-700 hover:text-gray-900 hover:underline transition-colors duration-300 ease-in-out;
+        @apply text-5xl md:text-lg font-medium text-site-text hover:text-site-accent transition-colors duration-300 ease-in-out;
     }
 
     .mobile-nav-overlay {
@@ -53,4 +61,6 @@
 
 body {
     font-family: 'Avenir Next', sans-serif;
+    background-color: var(--color-site-bg);
+    color: var(--color-site-text);
 }

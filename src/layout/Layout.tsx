@@ -6,7 +6,7 @@ export default function Layout() {
     <>
       <Header />
 
-      <main className="flex flex-col bg-linear-to-b from-amber-100 to-red-200 min-h-screen p-4">
+      <main className="flex flex-col bg-site-bg min-h-screen p-4">
         <Outlet />
       </main>
     </>

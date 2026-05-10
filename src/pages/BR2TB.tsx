@@ -15,7 +15,7 @@ export default function BR2TB() {
       <h2 className="text-3xl italic font-semibold mb-4">
         Bay Ridge to the Bronx
       </h2>
-      <p className="text-gray-600 mb-6 max-w-2xl">
+      <p className="text-site-muted mb-6 max-w-2xl">
         This short film follows Tony, a young man from Bay Ridge whose parents
         are away. After attending confession at his local church, he receives a
         call from his father with difficult news: Tony's grandfather is gravely

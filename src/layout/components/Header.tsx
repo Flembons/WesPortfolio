@@ -109,7 +109,7 @@ export default function Header() {
 
         {isMenuOpen && (
           <nav
-            className={`fixed top-16 inset-0 bg-site-bg z-50 flex flex-col items-start justify-center gap-3 p-8 ${isClosing ? "mobile-nav-overlay-exit" : "mobile-nav-overlay"}`}
+            className={`fixed top-16 inset-0 bg-linear-to-b from-site-bg to-site-border z-50 flex flex-col items-start justify-center gap-3 p-8 ${isClosing ? "mobile-nav-overlay-exit" : "mobile-nav-overlay"}`}
             onAnimationEnd={handleOverlayAnimationEnd}
           >
             {NAV_LINKS.map((item, i) =>

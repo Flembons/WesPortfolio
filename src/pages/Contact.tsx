@@ -1,7 +1,27 @@
+const CONTACT_IMG =
+  "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AAjVG8Gm1_KWfe4jQdDvKJU/CharlieDay1.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=li26do9i&raw=1";
+
+function wsrv(url: string, width = 1200, quality = 80) {
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp`;
+}
+
 export default function Contact() {
-    return (
-        <div className="flex flex-col items-center justify-center h-full">
-            <h1 className="text-4xl font-bold">Contact</h1>
-        </div>
-    )
+  return (
+    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto px-6 py-12">
+      <div className="aspect-video overflow-hidden rounded-md shadow-md">
+        <img
+          src={wsrv(CONTACT_IMG)}
+          alt=""
+          className="w-full h-full object-cover object-[center_20%]"
+        />
+      </div>
+
+      <a
+        className="w-fit mt-8 px-8 py-4 border bg-site-bg text-site-accent rounded-md shadow-md hover:text-site-text transition-colors duration-300"
+        href="mailto:info@westonflemmons.com"
+      >
+        Contact Me
+      </a>
+    </div>
+  );
 }

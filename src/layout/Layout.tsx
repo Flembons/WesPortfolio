@@ -3,15 +3,14 @@ import Header from "./components/Header";
 
 export default function Layout() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
 
       <main
-        className="flex flex-col bg-linear-to-b from-site-bg to-site-border
-       min-h-screen p-4"
+        className="flex flex-col flex-1 bg-linear-to-b from-site-bg to-site-border p-4"
       >
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }

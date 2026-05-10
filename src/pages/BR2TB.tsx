@@ -11,7 +11,7 @@ const BR2TB_STILLS = [
 
 export default function BR2TB() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto pt-8">
       <h2 className="text-3xl italic font-semibold mb-4">
         Bay Ridge to the Bronx
       </h2>

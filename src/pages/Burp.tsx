@@ -11,7 +11,7 @@ const BURP_STILLS = [
 
 export default function Burp() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto pt-8">
       <h2 className="text-3xl italic font-semibold mb-4">BURP</h2>
       <p className="text-site-muted mb-6 max-w-2xl">
         When a young woman hesitates on the day of her abortion, she's pulled

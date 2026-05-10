@@ -7,7 +7,7 @@ function wsrv(url: string, width = 1200, quality = 80) {
 
 export default function Contact() {
   return (
-    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto px-6 py-12">
+    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto pt-8">
       <div className="aspect-video overflow-hidden rounded-md shadow-md">
         <img
           src={wsrv(CONTACT_IMG)}

@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
+function wsrv(url: string, width = 1200, quality = 80): string {
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp`;
+}
+
 interface StillsGalleryProps {
   images: string[];
   interval?: number;
@@ -41,8 +45,8 @@ export default function StillsGallery({
     >
       {images.map((src, i) => (
         <img
-          key={`${src}-${i}`}
-          src={src}
+          key={i}
+          src={wsrv(src)}
           alt=""
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
         />

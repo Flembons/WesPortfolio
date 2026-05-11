@@ -21,7 +21,7 @@ export default function NavDropdown({ label, items }: NavDropdownProps) {
       >
         {label}
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           viewBox="0 0 12 12"
           fill="none"
         >

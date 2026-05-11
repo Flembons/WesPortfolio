@@ -1,4 +1,5 @@
 import StillsGallery from "./components/StillsGallery";
+import FadeIn from "../components/FadeIn";
 
 const BURP_STILLS = [
   "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AG9JtUNBcJGgUWiaEXTYz6Q/BURP%20stills/Screenshot%202026-04-20%20at%205.29.38%E2%80%AFPM%20(2).png?rlkey=jbpnq43atuaism6bl3se8k0uy&st=ihxd7inq&raw=1",
@@ -12,14 +13,20 @@ const BURP_STILLS = [
 export default function Burp() {
   return (
     <div className="max-w-4xl mx-auto pt-8">
-      <h2 className="text-3xl italic font-semibold mb-4">BURP</h2>
-      <p className="text-site-muted mb-6 max-w-2xl">
-        When a young woman hesitates on the day of her abortion, she's pulled
-        into the surreal underworld of Manhattan's Chinatown — where an opera
-        singer, two bumbling thugs, and a cat-Xanax ring fronting as a dumpling
-        shop blur the lines between grief and absurdity.
-      </p>
-      <StillsGallery images={BURP_STILLS} />
+      <FadeIn delay={0}>
+        <h2 className="text-3xl italic font-semibold mb-4">BURP</h2>
+      </FadeIn>
+      <FadeIn delay={100}>
+        <p className="text-site-muted mb-6 max-w-2xl">
+          When a young woman hesitates on the day of her abortion, she's pulled
+          into the surreal underworld of Manhattan's Chinatown — where an opera
+          singer, two bumbling thugs, and a cat-Xanax ring fronting as a dumpling
+          shop blur the lines between grief and absurdity.
+        </p>
+      </FadeIn>
+      <FadeIn delay={200}>
+        <StillsGallery images={BURP_STILLS} />
+      </FadeIn>
     </div>
   );
 }

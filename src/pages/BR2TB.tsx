@@ -1,4 +1,5 @@
 import StillsGallery from "./components/StillsGallery";
+import FadeIn from "../components/FadeIn";
 
 const BR2TB_STILLS = [
   "https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AHoqTlxc6EpBgzYGUen21oQ/BR2TB%20STILLS/COLOR%2002_01_00_17_13.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=aahzlxb7&raw=1",
@@ -12,18 +13,22 @@ const BR2TB_STILLS = [
 export default function BR2TB() {
   return (
     <div className="max-w-4xl mx-auto pt-8">
-      <h2 className="text-3xl italic font-semibold mb-4">
-        Bay Ridge to the Bronx
-      </h2>
-      <p className="text-site-muted mb-6 max-w-2xl">
-        This short film follows Tony, a young man from Bay Ridge whose parents
-        are away. After attending confession at his local church, he receives a
-        call from his father with difficult news: Tony's grandfather is gravely
-        ill and nearing the end of his life. Tasked with representing his
-        family, Tony must travel to the Bronx to witness his grandfather's final
-        moments.
-      </p>
-      <StillsGallery images={BR2TB_STILLS} />
+      <FadeIn delay={0}>
+        <h2 className="text-3xl italic mb-4">Bay Ridge to the Bronx</h2>
+      </FadeIn>
+      <FadeIn delay={100}>
+        <p className="text-site-muted mb-6 max-w-2xl">
+          This short film follows Tony, a young man from Bay Ridge whose parents
+          are away. After attending confession at his local church, he receives
+          a call from his father with difficult news: Tony's grandfather is
+          gravely ill and nearing the end of his life. Tasked with representing
+          his family, Tony must travel to the Bronx to witness his grandfather's
+          final moments.
+        </p>
+      </FadeIn>
+      <FadeIn delay={200}>
+        <StillsGallery images={BR2TB_STILLS} />
+      </FadeIn>
     </div>
   );
 }

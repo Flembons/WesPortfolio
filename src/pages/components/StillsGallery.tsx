@@ -11,6 +11,7 @@ export default function StillsGallery({
   interval = 5000,
 }: StillsGalleryProps) {
   const [current, setCurrent] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const [mobileControls, setMobileControls] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -43,11 +44,15 @@ export default function StillsGallery({
 
   return (
     <div
-      className="relative w-full aspect-video overflow-hidden group bg-black rounded-md shadow-md"
+      className="relative w-full aspect-video overflow-hidden bg-black rounded-md shadow-md"
       onMouseEnter={() => {
+        setHovered(true);
         if (timerRef.current) clearInterval(timerRef.current);
       }}
-      onMouseLeave={startTimer}
+      onMouseLeave={() => {
+        setHovered(false);
+        startTimer();
+      }}
       onTouchStart={(e) => {
         touchStartX.current = e.touches[0].clientX;
       }}
@@ -77,13 +82,13 @@ export default function StillsGallery({
 
       <button
         onClick={() => goTo((current - 1 + images.length) % images.length)}
-        className={`absolute cursor-pointer left-4 top-1/2 -translate-y-1/2 ${mobileControls ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl`}
+        className={`absolute cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
       >
         ‹
       </button>
       <button
         onClick={() => goTo((current + 1) % images.length)}
-        className={`absolute cursor-pointer right-4 top-1/2 -translate-y-1/2 ${mobileControls ? "opacity-100" : "opacity-0"} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl`}
+        className={`absolute cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
       >
         ›
       </button>

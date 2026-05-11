@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/fonts/AvenirNext-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   /* --color-site-bg: #fafaf8;
   --color-site-text: #1a1a1a;
@@ -12,14 +19,6 @@
   --color-site-accent: #c8a882;
   --color-site-border: #2e2c29;
   --color-site-muted: #aeaca8;
-}
-
-/* Avenir Next */
-@font-face {
-  font-family: "Avenir Next";
-  src: url("/fonts/AvenirNext-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @keyframes fade-in {
@@ -63,6 +62,18 @@
 }
 
 @layer components {
+  .fade-in-scroll {
+    opacity: 0;
+    animation: fade-in-up 600ms ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-scroll {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
   .header-btn {
     @apply text-5xl md:text-lg font-medium text-site-text hover:text-site-accent transition-colors duration-300 ease-in-out;
   }

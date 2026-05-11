@@ -131,7 +131,7 @@ export default function Header() {
                   >
                     {item.label}
                     <ChevronDownIcon
-                      className={`w-8 h-8 transition-transform duration-300 ${openMobileDropdown === item.label ? "rotate-180" : ""}`}
+                      className={`w-8 h-8 transition-transform duration-400 ease-out ${openMobileDropdown === item.label ? "rotate-180" : ""}`}
                     />
                   </button>
                   <div

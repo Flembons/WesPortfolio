@@ -1,68 +1,63 @@
 EXAMPLES
 
-https://www.adamcarboni.com/
+https://jessebronstein.com/
 
-https://www.freddiemurphy.com/reel
+Photogaphy: https://davemeyers.com/photography/
 
-https://stanislavadam.com/work/
-
-https://goldenhourfilms.co/work/commerical-987fpa
-
-https://timflower.co.nz/
-
-https://www.houseproductions.com/
-
-Home
+Work
 
 Hero Loop playing
 
 NEVERHOME - Perro (Official Music Video)
+3 Stills
 
-Colorado & New Mexico Fishing
+4th ARQ Wayfinders Campaign
+3 Stills
+
+Saul 16mm Test Shoot
+3 Stills
 
 Slowdown Dry Goods - “Life is a Gift”
-
-4th Are Spring Studios NYC
+3 Stils
 
 Dead Dove (Your Love Was Never A Waste of Time) - Hiding Places (Official Music Video)
+3 Stills
 
 JD Airmax Day Reel
+3 Stills  (try to resize these to fit if you can, I can get new stills to fit aspect ratio if needed)
 
-
-Film  (drop down menu)
-
-STILLS : https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/APu-TNkMFdIxfSJh5Aj0v0o?rlkey=jbpnq43atuaism6bl3se8k0uy&st=lbdxjkmr&dl=0
 
 Narrative
+
 Stills Gallery
 “Bay Ridge to the Bronx” 
 This short film follows Tony, a young man from Bay Ridge whose parents are away. After attending confession at his local church, he receives a call from his father with difficult news: Tony’s grandfather is gravely ill and nearing the end of his life. Take with representing his family, Tony must travel to the Bronx to witness his grandfather’s final moments.
-
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AHoqTlxc6EpBgzYGUen21oQ/BR2TB%20STILLS/COLOR%2002_01_00_17_13.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=aahzlxb7&dl=0
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AIr-_6DjizOWJjEnYDgGcCo/BR2TB%20STILLS/COLOR%2002_01_00_57_19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=i94cq173&dl=0
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AN8NO8sYQ8lWojFUOjyHKB8/BR2TB%20STILLS/COLOR%2002_01_01_48_01.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=3jnfs2yf&dl=0
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AGA3c03K28at4EkoKg9SOyA/BR2TB%20STILLS/COLOR%2002_01_07_34_12.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=v4611nm0&dl=0
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AIr-_6DjizOWJjEnYDgGcCo/BR2TB%20STILLS/COLOR%2002_01_00_57_19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=d2izbqvw&dl=0
-https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AKkZDwVrfisBdXsvHdLlF-M/BR2TB%20STILLS/COLOR%2002_01_03_11_11.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=39lwki68&dl=0
-
 
 “BURP” 
 Stills Gallery
 When a young woman hesitates on the day of her abortion, she's pulled into the surreal underworld of Manhattan's Chinatown — where an opera singer, two bumbling thugs, and a cat-Xanax ring fronting as a dumpling shop blur the lines between grief and absurdity.
 
-Documentary/Promo
-Still Image (Still 2026-04-30 120836_1.1.3)
-All Hoods Considered - Jordan (Playing at Nike SoHo)
 
-Clara Son Reminiscence NYFW 2024 Presentation
+Photography
 
-Dear New York TV Special 2024
+INFO
 
-Sienna Hubert Ross Domesticated Tour Promo
-
+Weston Flemmons is a New York based Director of Photography with over four years of experience. He is originally from Memphis, TN — with a background in skateboarding and documentary filmmaking. He has experiences collaborating with brands like JD Sports, Jordan, Adidas, and Primark.
 
 Contact
+info@westonflemmons.com
 
-Profile Picture + Contact button to email info@westonflemmons.com
+Copyright 2026 Weston Flemmons and Email Button + Instagram button bottom right corner
 
+
+
+NOTES
+
+Have the hero video play full screen up top with my name in the middle with a work button the left that drops the page down to the videos. Each video will have 3 stills that serve as the thumbnail for the link to the video player that pops up just like it does on Jesse Bronstein’s website. No still gallery underneath just the video is good. Also an info button the right that scrolls all the way to the bottom.
+
+The work section will have tabs like Jesse Bronstein’s with “Selected” “Narrative” and “Photography”. “Selected” will be the videos linked above with the 3 stills thumbnails and pop up player when clicked. “Narrative” will be similar to “selected” with the 3 stills thumbnails but instead of a video player let it be a gallery of photos when clicked on with the synopsis underneath. The “Photography” section will be the photos in the “Photography” folder above.
+
+All one single page would be great 
+
+Neue Haas Grotesk Font
 

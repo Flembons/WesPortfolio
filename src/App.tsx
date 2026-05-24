@@ -1,27 +1,30 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./layout/Layout";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Film from "./pages/Film";
-import BR2TB from "./pages/BR2TB";
-import Burp from "./pages/Burp";
-import Documentary from "./pages/Documentary";
-import Promos from "./pages/Promos";
-import Contact from "./pages/Contact";
+import Work from "./pages/Work";
+import Info from "./pages/Info";
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="film">
-          <Route index element={<Film />} />
-          <Route path="br2tb" element={<BR2TB />} />
-          <Route path="burp" element={<Burp />} />
-        </Route>
-        <Route path="documentary" element={<Documentary />} />
-        <Route path="promos" element={<Promos />} />
-        <Route path="contact" element={<Contact />} />
-      </Route>
-    </Routes>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex flex-col bg-linear-to-b from-site-bg to-site-border">
+        <section
+          id="home"
+          className="min-h-screen flex flex-col items-center justify-center"
+        >
+          <Home />
+        </section>
+        <section id="work" className="px-4">
+          <Work />
+        </section>
+        <section id="info-section" className="py-16 px-4">
+          <Info />
+          <div id="info" className="h-px scroll-mt-16" aria-hidden="true" />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 }

@@ -1,16 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { wsrv } from "../../lib/wsrv";
 
 interface StillsGalleryProps {
   images: string[];
   interval?: number;
+  initialIndex?: number;
+  contain?: boolean;
 }
 
 export default function StillsGallery({
   images,
   interval = 5000,
+  initialIndex = 0,
+  contain = false,
 }: StillsGalleryProps) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(initialIndex);
   const [hovered, setHovered] = useState(false);
   const [mobileControls, setMobileControls] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -44,7 +47,7 @@ export default function StillsGallery({
 
   return (
     <div
-      className="relative w-full aspect-video overflow-hidden bg-black rounded-md shadow-md"
+      className={`relative w-full overflow-hidden bg-black rounded-md shadow-md ${contain ? "h-[75vh]" : "aspect-video"}`}
       onMouseEnter={() => {
         setHovered(true);
         if (timerRef.current) clearInterval(timerRef.current);
@@ -74,9 +77,9 @@ export default function StillsGallery({
       {images.map((src, i) => (
         <img
           key={i}
-          src={wsrv(src)}
+          src={src}
           alt=""
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100" : "opacity-0"}`}
         />
       ))}
 

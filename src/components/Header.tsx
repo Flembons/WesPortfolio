@@ -1,6 +1,14 @@
-export default function Header() {
+interface HeaderProps {
+  stuck: boolean;
+}
+
+export default function Header({ stuck }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 flex h-16 justify-between items-center p-4 w-full bg-transparent">
+    <header
+      className={`left-0 w-full z-50 flex justify-between items-center bg-transparent  py-2 px-6 transition-colors duration-300 ${
+        stuck ? "fixed top-0" : "absolute top-1/2 -translate-y-1/2"
+      }`}
+    >
       <nav className="flex w-full items-center justify-between text-lg">
         <a href="#work" className="header-btn">
           Work

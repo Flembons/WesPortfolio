@@ -2,9 +2,9 @@ import FadeIn from "../components/FadeIn";
 
 export default function Info() {
   return (
-    <div className="flex flex-col gap-16 pt-6 px-3">
+    <div className="flex flex-col gap-8 px-3">
       <FadeIn delay={0}>
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-2">
           <div>
             <p className="text-sm text-site-muted tracking-widest uppercase mb-3">
               About
@@ -20,7 +20,7 @@ export default function Info() {
       </FadeIn>
 
       <FadeIn delay={150}>
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-2">
           <div>
             <p className="text-sm text-site-muted tracking-widest uppercase mb-3">
               Contact
@@ -54,7 +54,7 @@ export default function Info() {
       </FadeIn>
 
       <FadeIn delay={300}>
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-2">
           <div>
             <p className="text-sm text-site-muted tracking-widest uppercase mb-3">
               Equipment

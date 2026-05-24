@@ -1,11 +1,12 @@
 interface ProjectProps {
   title: string;
   images: [string, string, string];
+  onClick?: () => void;
 }
 
-export default function Project({ title, images }: ProjectProps) {
+export default function Project({ title, images, onClick }: ProjectProps) {
   return (
-    <div className="relative group cursor-pointer">
+    <div className="relative group cursor-pointer" onClick={onClick}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         <img src={images[0]} alt={`${title} still 1`} className="w-full aspect-video object-cover" />
         <img src={images[1]} alt={`${title} still 2`} className="w-full aspect-video object-cover hidden sm:block" />

@@ -3,8 +3,7 @@ import FadeIn from "../components/FadeIn";
 import Project from "../components/Project";
 import PhotoGrid from "../components/PhotoGrid";
 import StillsGallery from "./components/StillsGallery";
-
-const wsrv = (url: string) => `https://wsrv.nl/?url=${encodeURIComponent(url)}&q=75`;
+import { wsrv } from "../lib/wsrv";
 
 type Category = "Selected" | "Narrative" | "Photography";
 

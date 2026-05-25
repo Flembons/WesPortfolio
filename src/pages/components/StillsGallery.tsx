@@ -3,11 +3,13 @@ import { useState, useRef } from "react";
 interface StillsGalleryProps {
   images: string[];
   initialIndex?: number;
+  contain?: boolean;
 }
 
 export default function StillsGallery({
   images,
   initialIndex = 0,
+  contain = false,
 }: StillsGalleryProps) {
   const [current, setCurrent] = useState(initialIndex);
   const [hovered, setHovered] = useState(false);
@@ -28,7 +30,7 @@ export default function StillsGallery({
   return (
     <div className="flex flex-col gap-3 w-full">
     <div
-      className="relative w-full aspect-video overflow-hidden rounded-md shadow-md"
+      className={`relative w-full overflow-hidden rounded-md shadow-md ${contain ? "h-[80vh]" : "aspect-video bg-black"}`}
       onMouseEnter={() => {
         setHovered(true);
       }}
@@ -58,7 +60,7 @@ export default function StillsGallery({
           key={i}
           src={src}
           alt=""
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100" : "opacity-0"}`}
         />
       ))}
 

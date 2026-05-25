@@ -1,22 +1,17 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 
 interface StillsGalleryProps {
   images: string[];
-  interval?: number;
   initialIndex?: number;
-  contain?: boolean;
 }
 
 export default function StillsGallery({
   images,
-  interval = 5000,
   initialIndex = 0,
-  contain = false,
 }: StillsGalleryProps) {
   const [current, setCurrent] = useState(initialIndex);
   const [hovered, setHovered] = useState(false);
   const [mobileControls, setMobileControls] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef<number | null>(null);
   const controlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -26,35 +21,19 @@ export default function StillsGallery({
     controlsTimerRef.current = setTimeout(() => setMobileControls(false), 2000);
   };
 
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setCurrent((i) => (i + 1) % images.length);
-    }, interval);
-  }, [images.length, interval]);
-
-  useEffect(() => {
-    startTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [startTimer]);
-
   const goTo = (index: number) => {
     setCurrent(index);
-    startTimer();
   };
 
   return (
+    <div className="flex flex-col gap-3 w-full">
     <div
-      className={`relative w-full overflow-hidden bg-black rounded-md shadow-md ${contain ? "h-[75vh]" : "aspect-video"}`}
+      className="relative w-full aspect-video overflow-hidden rounded-md shadow-md"
       onMouseEnter={() => {
         setHovered(true);
-        if (timerRef.current) clearInterval(timerRef.current);
       }}
       onMouseLeave={() => {
         setHovered(false);
-        startTimer();
       }}
       onTouchStart={(e) => {
         touchStartX.current = e.touches[0].clientX;
@@ -79,7 +58,7 @@ export default function StillsGallery({
           key={i}
           src={src}
           alt=""
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
         />
       ))}
 
@@ -96,15 +75,17 @@ export default function StillsGallery({
         ›
       </button>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className={`w-2 h-2 rounded-full transition-opacity bg-white cursor-pointer duration-300 ${i === current ? "opacity-100" : "opacity-40"}`}
-          />
-        ))}
-      </div>
+    </div>
+
+    <div className="flex justify-center gap-2">
+      {images.map((_, i) => (
+        <button
+          key={i}
+          onClick={() => goTo(i)}
+          className={`w-2 h-2 rounded-full transition-opacity bg-white cursor-pointer duration-300 ${i === current ? "opacity-100" : "opacity-40"}`}
+        />
+      ))}
+    </div>
     </div>
   );
 }

@@ -55,7 +55,10 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
       {selectedIndex !== null && (
         <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 transition-opacity ease-in-out"
-          style={{ opacity: visible ? 1 : 0, transitionDuration: `${FADE_MS}ms` }}
+          style={{
+            opacity: visible ? 1 : 0,
+            transitionDuration: `${FADE_MS}ms`,
+          }}
           onClick={closeModal}
         >
           <button
@@ -65,11 +68,13 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
           >
             ✕
           </button>
-          <div className="w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
             <StillsGallery
               images={photos}
               initialIndex={selectedIndex}
-              interval={999999}
               contain
             />
           </div>

@@ -343,7 +343,7 @@ export default function Work() {
 
   return (
     <div className="">
-      <div className="flex gap-8 mb-10 border-b border-site-border">
+      <div className="flex mx-4 gap-8 mb-10 border-b border-site-border">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
@@ -359,7 +359,7 @@ export default function Work() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex sm:px-4 flex-col gap-2">
         {activeCategory === "Photography" ? (
           <PhotoGrid photos={PHOTOGRAPHY_PHOTOS} />
         ) : projects.length === 0 ? (
@@ -397,7 +397,9 @@ export default function Work() {
         <div className="flex flex-col gap-3">
           <h2 className="text-xl italic">{selectedProject?.title}</h2>
           {selectedProject?.description && (
-            <p className="text-site-muted leading-relaxed">{selectedProject.description}</p>
+            <p className="text-site-muted leading-relaxed">
+              {selectedProject.description}
+            </p>
           )}
         </div>
       </Modal>

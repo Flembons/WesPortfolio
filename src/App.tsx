@@ -8,7 +8,7 @@ export default function App() {
     <div className="flex flex-col min-h-screen">
       <main className="flex flex-col bg-black">
         <Home />
-        <section id="work" className="px-4 mt-16">
+        <section id="work" className="mt-16">
           <Work />
         </section>
         <section id="info" className="px-4 mt-16 mb-8">

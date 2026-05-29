@@ -24,8 +24,9 @@ export default function Home() {
     >
       <Header stuck={stuck} />
       <iframe
-        src="https://player.vimeo.com/video/1193800298?h=9c44f5ce90&background=1&autopause=0"
+        src="https://player.vimeo.com/video/1196185449?background=1&autoplay=1&autopause=0"
         className="absolute top-0 left-1/2 -translate-x-1/2 h-full border-0 pointer-events-none"
+        loading="eager"
         style={{ width: "max(100vw, 177.78vh)" }}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen

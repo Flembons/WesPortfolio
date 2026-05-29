@@ -17,7 +17,7 @@ export default function Header({ stuck }: HeaderProps) {
           href="#home"
           className="text-xl font-medium text-site-text hover:text-site-accent transition-colors duration-300"
         >
-          Wes Flemmons
+          Weston Flemmons
         </a>
         <a href="#info" className="header-btn">
           Info

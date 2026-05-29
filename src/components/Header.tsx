@@ -5,7 +5,7 @@ interface HeaderProps {
 export default function Header({ stuck }: HeaderProps) {
   return (
     <header
-      className={`left-0 w-full z-50 flex justify-between items-center bg-transparent  py-2 px-6 transition-colors duration-300 ${
+      className={`left-0 w-full z-50 flex justify-between items-center bg-transparent  py-2 px-4 sm:px-6 transition-colors duration-300 ${
         stuck ? "fixed top-0" : "absolute top-1/2 -translate-y-1/2"
       }`}
     >

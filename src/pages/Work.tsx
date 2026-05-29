@@ -11,7 +11,9 @@ const CATEGORIES: Category[] = ["Selected", "Narrative", "Photography"];
 
 export default function Work() {
   const [activeCategory, setActiveCategory] = useState<Category>("Selected");
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
+    null,
+  );
   const [modalOpen, setModalOpen] = useState(false);
   const projects = PROJECTS[activeCategory];
 
@@ -42,7 +44,7 @@ export default function Work() {
         ))}
       </div>
 
-      <div className="flex sm:px-4 flex-col gap-2">
+      <div className="flex sm:px-4 flex-col gap-6">
         {activeCategory === "Photography" ? (
           <PhotoGrid photos={PHOTOGRAPHY_PHOTOS} />
         ) : projects.length === 0 ? (

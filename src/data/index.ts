@@ -4,13 +4,21 @@ import wayfinders from "./projects/wayfinders";
 import saul16mm from "./projects/saul-16mm";
 import slowdown from "./projects/slowdown";
 import deadDove from "./projects/dead-dove";
-import jdAirmax from "./projects/jd-airmax";
+import allHoodsConsidered from "./projects/all-hoods-considered";
 import lilTecca from "./projects/lil-tecca";
 import bayRidgeToBronx from "./projects/bay-ridge-to-bronx";
 import burp from "./projects/burp";
 
 export const PROJECTS: Record<Category, Project[]> = {
-  Selected: [neverhomePerro, wayfinders, saul16mm, slowdown, deadDove, jdAirmax, lilTecca],
+  Selected: [
+    neverhomePerro,
+    wayfinders,
+    saul16mm,
+    slowdown,
+    deadDove,
+    allHoodsConsidered,
+    lilTecca,
+  ],
   Narrative: [bayRidgeToBronx, burp],
   Photography: [],
 };

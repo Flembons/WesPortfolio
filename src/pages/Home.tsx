@@ -29,7 +29,6 @@ export default function Home() {
         loading="eager"
         style={{ width: "max(100vw, 177.78vh)" }}
         allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
       />
     </section>
   );

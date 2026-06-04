@@ -73,7 +73,6 @@ export default function Work() {
               src={selectedProject.videoUrl}
               className="w-full h-full"
               allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
             />
           </div>
         ) : (

@@ -66,15 +66,15 @@ export default function StillsGallery({
 
       <button
         onClick={() => goTo((current - 1 + images.length) % images.length)}
-        className={`absolute cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+        className={`absolute cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
       >
-        ‹
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><polyline points="15 18 9 12 15 6" /></svg>
       </button>
       <button
         onClick={() => goTo((current + 1) % images.length)}
-        className={`absolute cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center text-xl ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+        className={`absolute cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
       >
-        ›
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><polyline points="9 18 15 12 9 6" /></svg>
       </button>
 
     </div>

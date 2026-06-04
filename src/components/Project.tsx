@@ -25,7 +25,7 @@ export default function Project({ title, images, onClick }: ProjectProps) {
         />
       </div>
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <h3 className="text-xl italic text-site-text">{title}</h3>
+        <h3 className="project-title">{title}</h3>
       </div>
     </div>
   );

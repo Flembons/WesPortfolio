@@ -33,7 +33,7 @@ export default function Work() {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`cursor-pointer pb-3 text-sm tracking-widest uppercase transition-colors duration-200 ${
+            className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-colors duration-200 ${
               activeCategory === cat
                 ? "text-site-text border-b-2 border-site-accent -mb-px"
                 : "text-site-muted hover:text-site-text"
@@ -80,7 +80,7 @@ export default function Work() {
           <StillsGallery images={selectedProject?.allImages ?? []} />
         )}
         <div className="flex flex-col gap-3">
-          <h2 className="text-xl italic">{selectedProject?.title}</h2>
+          <h2 className="project-title">{selectedProject?.title}</h2>
           {selectedProject?.description && (
             <p className="text-site-muted leading-relaxed">
               {selectedProject.description}

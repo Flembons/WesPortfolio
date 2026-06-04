@@ -6,7 +6,7 @@ export default function Info() {
       <FadeIn delay={0}>
         <section className="flex flex-col gap-2">
           <div>
-            <p className="text-sm text-site-muted tracking-widest uppercase mb-3">
+            <p className="text-sm text-site-muted font-semibold tracking-widest uppercase mb-3">
               About
             </p>
             <hr className="border-site-border" />
@@ -29,7 +29,7 @@ export default function Info() {
       <FadeIn delay={150}>
         <section className="flex flex-col gap-2">
           <div>
-            <p className="text-sm text-site-muted tracking-widest uppercase mb-3">
+            <p className="text-sm text-site-muted font-semibold tracking-widest uppercase mb-3">
               Contact
             </p>
             <hr className="border-site-border" />

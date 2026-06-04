@@ -13,10 +13,7 @@ export default function Header({ stuck }: HeaderProps) {
         <a href="#work" className="header-btn">
           Work
         </a>
-        <a
-          href="#home"
-          className="text-xl font-medium text-site-text hover:text-site-accent transition-colors duration-300"
-        >
+        <a href="#home" className="header-btn text-xl">
           Weston Flemmons
         </a>
         <a href="#info" className="header-btn">

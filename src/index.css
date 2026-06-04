@@ -1,10 +1,87 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Avenir Next";
-  src: url("/fonts/AvenirNext-Regular.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Thin.ttf") format("truetype");
+  font-weight: 100;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Book.ttf") format("truetype");
+  font-weight: 450;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-BookItalic.ttf") format("truetype");
+  font-weight: 450;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helixa";
+  src: url("/fonts/Helixa-Font/Helixa-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
 }
 
 @theme {
@@ -75,7 +152,7 @@
   }
 
   .header-btn {
-    @apply text-lg font-medium text-site-text hover:text-site-accent transition-colors duration-300 ease-in-out;
+    @apply text-lg tracking-wider font-semibold text-site-text hover:text-site-accent transition-colors duration-300 ease-in-out;
   }
 
   .mobile-nav-overlay {
@@ -103,7 +180,7 @@ html {
 }
 
 body {
-  font-family: "Avenir Next", sans-serif;
+  font-family: "Helixa", sans-serif;
   background-color: var(--color-site-bg);
   color: var(--color-site-text);
 }

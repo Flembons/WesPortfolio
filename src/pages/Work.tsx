@@ -15,9 +15,11 @@ export default function Work() {
     null,
   );
   const [modalOpen, setModalOpen] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const openModal = (project: ProjectData) => {
     setSelectedProject(project);
+    setVideoLoaded(false);
     setModalOpen(true);
   };
   const closeModal = () => {
@@ -56,8 +58,6 @@ export default function Work() {
         >
           {cat === "Photography" ? (
             <PhotoGrid photos={PHOTOGRAPHY_PHOTOS} />
-          ) : PROJECTS[cat].length === 0 ? (
-            <p className="text-site-muted text-sm tracking-wide">Coming soon.</p>
           ) : (
             PROJECTS[cat].map((project) => (
               <FadeIn key={project.title}>
@@ -78,12 +78,23 @@ export default function Work() {
 
       <Modal isOpen={modalOpen} onClose={closeModal}>
         {selectedProject?.videoUrl ? (
-          <div className="w-full aspect-video">
+          <div className="w-full aspect-video relative overflow-hidden">
             <iframe
-              src={selectedProject.videoUrl}
+              src={selectedProject.videoUrl.replace(/[&?]autoplay=1/, "")}
               className="w-full h-full"
-              allow="autoplay; fullscreen; picture-in-picture"
+              allow="fullscreen; picture-in-picture"
+              onLoad={() => setVideoLoaded(true)}
             />
+            <div
+              className={`absolute inset-0 transition-opacity duration-400 ease-in ${videoLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            >
+              <img
+                src={selectedProject.images[0]}
+                alt=""
+                className="w-full h-full object-cover"
+                style={{ filter: "blur(4px)" }}
+              />
+            </div>
           </div>
         ) : (
           <StillsGallery images={selectedProject?.allImages ?? []} />

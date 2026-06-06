@@ -30,13 +30,18 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     if (!vimeoId) return;
 
     const controller = new AbortController();
-    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`, {
-      signal: controller.signal,
-    })
+    fetch(
+      `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}`,
+      {
+        signal: controller.signal,
+      },
+    )
       .then((r) => r.json())
       .then(({ thumbnail_url }: { thumbnail_url: string }) => {
         setVimeoThumbSmall(thumbnail_url);
-        setVimeoThumbFull(thumbnail_url.replace(/_(\d+)x(\d+)(\.\w+)$/, "_1280x720$3"));
+        setVimeoThumbFull(
+          thumbnail_url.replace(/_(\d+)x(\d+)(\.\w+)$/, "_1280x720$3"),
+        );
       })
       .catch(() => {});
 
@@ -59,7 +64,6 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             src={thumbSmall}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: thumbFullLoaded ? undefined : "blur(8px)" }}
           />
         )}
         {thumbFull && (

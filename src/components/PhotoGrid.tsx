@@ -29,9 +29,11 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
         <div className="columns-2 md:columns-3 gap-2">
           {photos.map((src, i) => (
             <img
-              key={i}
+              key={src}
               src={src}
-              alt=""
+              alt={`Photograph ${i + 1}`}
+              loading="lazy"
+              decoding="async"
               onClick={() => openModal(i)}
               className="w-full mb-2 cursor-pointer"
             />

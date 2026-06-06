@@ -15,7 +15,6 @@ export default function Work() {
     null,
   );
   const [modalOpen, setModalOpen] = useState(false);
-  const projects = PROJECTS[activeCategory];
 
   const openModal = (project: ProjectData) => {
     setSelectedProject(project);
@@ -28,10 +27,16 @@ export default function Work() {
 
   return (
     <div className="">
-      <div className="flex mx-4 gap-8 mb-10 border-b border-site-border">
+      <div
+        role="tablist"
+        aria-label="Work categories"
+        className="flex mx-4 gap-8 mb-10 border-b border-site-border"
+      >
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
+            role="tab"
+            aria-selected={activeCategory === cat}
             onClick={() => setActiveCategory(cat)}
             className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-colors duration-200 ${
               activeCategory === cat
@@ -44,27 +49,32 @@ export default function Work() {
         ))}
       </div>
 
-      <div className="flex sm:px-4 flex-col gap-6">
-        {activeCategory === "Photography" ? (
-          <PhotoGrid photos={PHOTOGRAPHY_PHOTOS} />
-        ) : projects.length === 0 ? (
-          <p className="text-site-muted text-sm tracking-wide">Coming soon.</p>
-        ) : (
-          projects.map((project) => (
-            <FadeIn key={project.title}>
-              <Project
-                title={project.title}
-                images={project.images}
-                onClick={
-                  project.allImages || project.videoUrl
-                    ? () => openModal(project)
-                    : undefined
-                }
-              />
-            </FadeIn>
-          ))
-        )}
-      </div>
+      {CATEGORIES.map((cat) => (
+        <div
+          key={cat}
+          className={`flex sm:px-4 flex-col gap-6 ${activeCategory === cat ? "" : "hidden"}`}
+        >
+          {cat === "Photography" ? (
+            <PhotoGrid photos={PHOTOGRAPHY_PHOTOS} />
+          ) : PROJECTS[cat].length === 0 ? (
+            <p className="text-site-muted text-sm tracking-wide">Coming soon.</p>
+          ) : (
+            PROJECTS[cat].map((project) => (
+              <FadeIn key={project.title}>
+                <Project
+                  title={project.title}
+                  images={project.images}
+                  onClick={
+                    project.allImages || project.videoUrl
+                      ? () => openModal(project)
+                      : undefined
+                  }
+                />
+              </FadeIn>
+            ))
+          )}
+        </div>
+      ))}
 
       <Modal isOpen={modalOpen} onClose={closeModal}>
         {selectedProject?.videoUrl ? (

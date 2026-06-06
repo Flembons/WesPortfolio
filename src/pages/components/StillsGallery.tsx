@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface StillsGalleryProps {
   images: string[];
@@ -26,6 +26,17 @@ export default function StillsGallery({
   const goTo = (index: number) => {
     setCurrent(index);
   };
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft")
+        setCurrent((c) => (c - 1 + images.length) % images.length);
+      if (e.key === "ArrowRight")
+        setCurrent((c) => (c + 1) % images.length);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [images.length]);
 
   return (
     <div className="flex flex-col gap-3 w-full">

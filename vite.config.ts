@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import babel from "@rolldown/plugin-babel";
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   base: "/",
   plugins: [
     react(),
@@ -13,4 +13,4 @@ export default defineConfig(({ command }) => ({
     }),
     tailwindcss(),
   ],
-}));
+});

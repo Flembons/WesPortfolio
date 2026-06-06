@@ -5,7 +5,7 @@ import babel from "@rolldown/plugin-babel";
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/WesPortfolio/" : "/",
+  base: "/",
   plugins: [
     react(),
     babel({

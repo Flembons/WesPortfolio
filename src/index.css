@@ -2,86 +2,98 @@
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Thin.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Thin.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-ThinItalic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-ThinItalic.woff2") format("woff2");
   font-weight: 100;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Light.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-LightItalic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-LightItalic.woff2") format("woff2");
   font-weight: 300;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Regular.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Italic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Book.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Book.woff2") format("woff2");
   font-weight: 450;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-BookItalic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-BookItalic.woff2") format("woff2");
   font-weight: 450;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Bold.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-BoldItalic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-Black.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-Black.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Helixa";
-  src: url("/fonts/Helixa-Font/Helixa-BlackItalic.ttf") format("truetype");
+  src: url("/fonts/Helixa-Font/Helixa-BlackItalic.woff2") format("woff2");
   font-weight: 900;
   font-style: italic;
+  font-display: swap;
 }
 
 @theme {

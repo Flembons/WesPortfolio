@@ -31,8 +31,7 @@ export default function StillsGallery({
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft")
         setCurrent((c) => (c - 1 + images.length) % images.length);
-      if (e.key === "ArrowRight")
-        setCurrent((c) => (c + 1) % images.length);
+      if (e.key === "ArrowRight") setCurrent((c) => (c + 1) % images.length);
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
@@ -73,14 +72,14 @@ export default function StillsGallery({
             alt={`Still ${i + 1} of ${images.length}`}
             loading="lazy"
             decoding="async"
-            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100 z-10" : "opacity-0"}`}
           />
         ))}
 
         <button
           onClick={() => goTo((current - 1 + images.length) % images.length)}
           aria-label="Previous image"
-          className={`absolute cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+          className={`absolute z-20 cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +97,7 @@ export default function StillsGallery({
         <button
           onClick={() => goTo((current + 1) % images.length)}
           aria-label="Next image"
-          className={`absolute cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+          className={`absolute z-20 cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +121,7 @@ export default function StillsGallery({
             onClick={() => goTo(i)}
             aria-label={`Go to image ${i + 1}`}
             aria-current={i === current}
-            className={`w-2 h-2 rounded-full transition-opacity bg-white cursor-pointer duration-300 ${i === current ? "opacity-100" : "opacity-40"}`}
+            className={`w-2 h-2 rounded-full transition-opacity bg-white cursor-pointer duration-400 ease-in-out ${i === current ? "opacity-100" : "opacity-40"}`}
           />
         ))}
       </div>

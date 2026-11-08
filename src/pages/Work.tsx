@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import FadeIn from "../components/FadeIn";
 import Modal from "../components/Modal";
 import Project from "../components/Project";
@@ -23,12 +23,56 @@ export default function Work() {
   };
   const closeModal = () => setModalOpen(false);
 
+  // Slide the accent bar under the active tab. Written straight to the DOM so
+  // the first placement (and resizes) can skip the transition.
+  const tablistRef = useRef<HTMLDivElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
+  const hasPlacedRef = useRef(false);
+
+  const placeIndicator = (animate: boolean) => {
+    const tab = tablistRef.current?.querySelector<HTMLElement>(
+      '[aria-selected="true"]',
+    );
+    const indicator = indicatorRef.current;
+    if (!tab || !indicator) return;
+    indicator.style.transition = animate ? "" : "none";
+    indicator.style.transform = `translateX(${tab.offsetLeft}px)`;
+    indicator.style.width = `${tab.offsetWidth}px`;
+    indicator.style.opacity = "1";
+    if (!animate) {
+      void indicator.offsetWidth; // flush the jump before re-enabling
+      indicator.style.transition = "";
+    }
+  };
+
+  useLayoutEffect(() => {
+    placeIndicator(hasPlacedRef.current);
+    hasPlacedRef.current = true;
+  }, [activeCategory]);
+
+  // Tab widths change when the web font loads or the viewport resizes.
+  useLayoutEffect(() => {
+    const tablist = tablistRef.current;
+    if (!tablist) return;
+    let first = true; // ResizeObserver fires once on observe; skip it
+    const observer = new ResizeObserver(() => {
+      if (first) first = false;
+      else placeIndicator(false);
+    });
+    observer.observe(tablist);
+    tablist
+      .querySelectorAll('[role="tab"]')
+      .forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="">
       <div
+        ref={tablistRef}
         role="tablist"
         aria-label="Work categories"
-        className="flex mx-4 gap-8 mb-10 border-b border-site-border"
+        className="relative flex mx-4 gap-8 mb-10 border-b border-site-border"
       >
         {CATEGORIES.map((cat) => (
           <button
@@ -38,13 +82,18 @@ export default function Work() {
             onClick={() => setActiveCategory(cat)}
             className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-colors duration-200 ${
               activeCategory === cat
-                ? "text-site-text border-b-2 border-site-accent -mb-px"
+                ? "text-site-text"
                 : "text-site-muted hover:text-site-text"
             }`}
           >
             {cat}
           </button>
         ))}
+        <span
+          ref={indicatorRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-px left-0 h-0.5 bg-site-accent opacity-0 transition-[transform,width] duration-300 ease-out"
+        />
       </div>
 
       {CATEGORIES.map((cat) => (

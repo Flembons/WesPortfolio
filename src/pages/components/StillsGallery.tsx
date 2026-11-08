@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { wsrvSrcSet } from "../../lib/wsrv";
 
 interface StillsGalleryProps {
   images: string[];
@@ -18,6 +19,16 @@ export default function StillsGallery({
   const [mobileControls, setMobileControls] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const controlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Only the current image, its neighbours and images already shown get a
+  // src, so opening a gallery doesn't download every image at once.
+  const nearby = [current - 1, current, current + 1].map(
+    (i) => (i + images.length) % images.length,
+  );
+  const [requested, setRequested] = useState(() => new Set(nearby));
+  if (nearby.some((i) => !requested.has(i))) {
+    setRequested(new Set([...requested, ...nearby]));
+  }
 
   const showControlsBriefly = () => {
     setMobileControls(true);
@@ -70,7 +81,9 @@ export default function StillsGallery({
         {images.map((src, i) => (
           <img
             key={src}
-            src={src}
+            src={requested.has(i) ? src : undefined}
+            srcSet={requested.has(i) ? wsrvSrcSet(src) : undefined}
+            sizes="(min-width: 928px) 896px, calc(100vw - 2rem)"
             alt={`Still ${i + 1} of ${images.length}`}
             width={dimensions?.[i]?.width ?? 1920}
             height={dimensions?.[i]?.height ?? 1080}

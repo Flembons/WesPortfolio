@@ -10,6 +10,10 @@ interface ModalProps {
 
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   const [visible, setVisible] = useState(false);
+  // Children stay mounted through the fade-out so they don't vanish
+  // mid-transition, then unmount so a closed modal keeps no state or listeners.
+  const [mounted, setMounted] = useState(isOpen);
+  if (isOpen && !mounted) setMounted(true);
 
   useEffect(() => {
     if (isOpen) {
@@ -22,6 +26,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
     const raf = requestAnimationFrame(() => setVisible(false));
     const t = setTimeout(() => {
       document.documentElement.style.overflow = "";
+      setMounted(false);
     }, FADE_MS);
     return () => {
       cancelAnimationFrame(raf);
@@ -44,19 +49,21 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
       style={{ opacity: visible ? 1 : 0, transitionDuration: `${FADE_MS}ms` }}
       onClick={onClose}
     >
+      {/* isolate confines the content's z-indexes (gallery images, arrows) to
+          their own stacking context so they can never cover the close button. */}
+      <div
+        className="isolate w-full max-w-4xl flex flex-col gap-6 py-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {mounted && children}
+      </div>
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer text-2xl leading-none z-10"
+        className="fixed top-4 right-4 z-10 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer text-2xl leading-none"
         aria-label="Close"
       >
         ✕
       </button>
-      <div
-        className="w-full max-w-4xl flex flex-col gap-6 py-8"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-      </div>
     </div>
   );
 }

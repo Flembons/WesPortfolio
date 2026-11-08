@@ -63,6 +63,8 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
           <img
             src={thumbSmall}
             alt=""
+            width={1280}
+            height={720}
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
@@ -70,6 +72,8 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
           <img
             src={thumbFull}
             alt=""
+            width={1280}
+            height={720}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${thumbFullLoaded ? "opacity-100" : "opacity-0"}`}
             onLoad={() => setThumbFullLoaded(true)}
           />

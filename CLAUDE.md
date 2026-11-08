@@ -17,7 +17,7 @@ Every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml` 
 
 ## Stack
 
-React 19 + TypeScript + Vite 8 + Tailwind v4 (via `@tailwindcss/vite`, no `tailwind.config`). The React Compiler is on (babel `reactCompilerPreset` in `vite.config.ts`), so manual `useMemo`/`useCallback` are generally unnecessary. The README is unmodified Vite template boilerplate.
+React 19 + TypeScript + Vite 8 + Tailwind v4 (via `@tailwindcss/vite`, no `tailwind.config`). The React Compiler is on (babel `reactCompilerPreset` in `vite.config.ts`), so manual `useMemo`/`useCallback` are generally unnecessary.
 
 ## Architecture
 
@@ -34,6 +34,32 @@ Single-page film/photo portfolio with no router. `App.tsx` stacks `Home`, `Work`
 **Work page flow** (`src/pages/Work.tsx`): category tabs toggle visibility with `hidden` (all tabs stay mounted). Clicking a project opens one shared `Modal`. The modal shows `VideoPlayer` if `videoUrl` is set, otherwise `StillsGallery` with `allImages`. A project with neither is not clickable. `VideoPlayer` shows a thumbnail placeholder while the iframe loads: YouTube thumbnails come from the video ID, Vimeo thumbnails from the Vimeo oEmbed API.
 
 **Modal timing**: `Modal` fades over `FADE_MS` (250ms) and locks body/html scroll while open. `Work.closeModal` clears the selected project after a matching 250ms timeout so content doesn't vanish mid-fade. Keep these in sync if you change one.
+
+## Adding content
+
+**Film project:** create `src/data/projects/<slug>.ts`, then import it in `src/data/index.ts` and add it to `Selected` or `Narrative` (list order is site order).
+
+```ts
+import { wsrv } from "../../lib/wsrv";
+import type { Project } from "../types";
+
+const project: Project = {
+  title: "My Project",
+  images: [wsrv("..."), wsrv("..."), wsrv("...")], // exactly 3 thumbnails
+  description: "Optional logline shown in the modal.",
+  videoUrl: "https://player.vimeo.com/video/123456789?h=abc123&autoplay=1&title=0&byline=0&portrait=0",
+  // or, for a stills gallery instead of a video:
+  // allImages: [wsrv("..."), ...],
+};
+
+export default project;
+```
+
+**Photograph:** add `{ url, width, height }` to `RAW_PHOTOS` in `src/data/photography.ts`, using the original pixel dimensions. Get them with `curl -sL "<url>" -o /tmp/p.jpg && sips -g pixelWidth -g pixelHeight /tmp/p.jpg`.
+
+**Showreel:** the home-page reel is the Vimeo `background=1` iframe in `src/pages/Home.tsx`. Swap the video ID there.
+
+**Bio / SEO:** the bio text lives in `src/pages/Info.tsx`. `index.html` holds the meta description, Open Graph/Twitter tags and the JSON-LD `Person` block, so update those to match when the bio, clients or contact info change. `public/robots.txt` and `public/sitemap.xml` are static (bump `lastmod` on major content changes).
 
 ## Styling
 

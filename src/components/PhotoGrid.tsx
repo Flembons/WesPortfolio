@@ -52,6 +52,8 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
                 <img
                   src={photo.src}
                   alt={`Photograph ${i + 1}`}
+                  width={photo.width}
+                  height={photo.height}
                   loading="lazy"
                   decoding="async"
                   onLoad={() => markLoaded(photo.src)}
@@ -69,6 +71,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
         <StillsGallery
           key={selectedIndex ?? 0}
           images={photos.map((photo) => photo.src)}
+          dimensions={photos}
           initialIndex={selectedIndex ?? 0}
           contain
         />

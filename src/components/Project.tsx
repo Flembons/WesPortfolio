@@ -11,16 +11,22 @@ export default function Project({ title, images, onClick }: ProjectProps) {
         <img
           src={images[0]}
           alt={`${title} still 1`}
+          width={1200}
+          height={675}
           className="w-full aspect-video object-cover"
         />
         <img
           src={images[1]}
           alt={`${title} still 2`}
+          width={1200}
+          height={675}
           className="w-full aspect-video object-cover"
         />
         <img
           src={images[2]}
           alt={`${title} still 3`}
+          width={1200}
+          height={675}
           className="w-full aspect-video object-cover"
         />
       </div>

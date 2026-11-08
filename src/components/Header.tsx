@@ -13,9 +13,11 @@ export default function Header({ stuck }: HeaderProps) {
         <a href="#work" className="header-btn">
           Work
         </a>
-        <a href="#home" className="header-btn text-xl">
-          Weston Flemmons
-        </a>
+        <h1>
+          <a href="#home" className="header-btn text-xl">
+            Weston Flemmons
+          </a>
+        </h1>
         <a href="#info" className="header-btn">
           Info
         </a>

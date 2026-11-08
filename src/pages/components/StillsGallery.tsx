@@ -2,12 +2,14 @@ import { useState, useRef, useEffect } from "react";
 
 interface StillsGalleryProps {
   images: string[];
+  dimensions?: { width: number; height: number }[];
   initialIndex?: number;
   contain?: boolean;
 }
 
 export default function StillsGallery({
   images,
+  dimensions,
   initialIndex = 0,
   contain = false,
 }: StillsGalleryProps) {
@@ -70,6 +72,8 @@ export default function StillsGallery({
             key={src}
             src={src}
             alt={`Still ${i + 1} of ${images.length}`}
+            width={dimensions?.[i]?.width ?? 1920}
+            height={dimensions?.[i]?.height ?? 1080}
             loading="lazy"
             decoding="async"
             className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${contain ? "object-contain" : "object-cover"} ${i === current ? "opacity-100 z-10" : "opacity-0"}`}

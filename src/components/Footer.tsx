@@ -12,7 +12,7 @@ export default function Footer() {
       <span className="text-site-muted">New York, New York</span>
       <div className="flex gap-4">
         <a
-          href="mailto:info@wesflemmons.com"
+          href="mailto:info@westonflemmons.com"
           className="text-site-text hover:text-site-accent transition-colors duration-300"
         >
           <FontAwesomeIcon icon={faEnvelope} size="lg" />

@@ -27,43 +27,62 @@ export default function Work() {
   // the first placement (and resizes) can skip the transition.
   const tablistRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLSpanElement>(null);
+  const tabRefs = useRef<Partial<Record<Category, HTMLButtonElement>>>({});
+  const activeTabRef = useRef<HTMLButtonElement | null>(null);
   const hasPlacedRef = useRef(false);
 
   const placeIndicator = (animate: boolean) => {
-    const tab = tablistRef.current?.querySelector<HTMLElement>(
-      '[aria-selected="true"]',
-    );
+    const tablist = tablistRef.current;
+    const tab = activeTabRef.current;
     const indicator = indicatorRef.current;
-    if (!tab || !indicator) return;
+    if (!tablist || !tab || !indicator) return;
+
+    // Unrounded, so the 2px bar lines up exactly with fractional text widths.
+    const tabRect = tab.getBoundingClientRect();
+    const left = tabRect.left - tablist.getBoundingClientRect().left;
+    const width = tabRect.width;
+    const transform = `translateX(${left}px)`;
+    const widthPx = `${width}px`;
+    if (
+      indicator.style.transform === transform &&
+      indicator.style.width === widthPx
+    ) {
+      return;
+    }
+
     indicator.style.transition = animate ? "" : "none";
-    indicator.style.transform = `translateX(${tab.offsetLeft}px)`;
-    indicator.style.width = `${tab.offsetWidth}px`;
+    indicator.style.transform = transform;
+    indicator.style.width = widthPx;
     indicator.style.opacity = "1";
     if (!animate) {
-      void indicator.offsetWidth; // flush the jump before re-enabling
+      // Force a style flush so the jump lands before the transition comes back.
+      // A method call, because the React Compiler drops a bare property read.
+      indicator.getBoundingClientRect();
       indicator.style.transition = "";
     }
   };
 
   useLayoutEffect(() => {
+    activeTabRef.current = tabRefs.current[activeCategory] ?? null;
     placeIndicator(hasPlacedRef.current);
     hasPlacedRef.current = true;
   }, [activeCategory]);
 
-  // Tab widths change when the web font loads or the viewport resizes.
+  // Tab widths change when the web font swaps in. Only the tabs are observed:
+  // they're left-aligned, so the tablist's own width (which shifts when a
+  // scrollbar appears mid-switch) never moves them. The initial callback is a
+  // no-op unless the font already swapped, in which case it corrects the bar.
   useLayoutEffect(() => {
-    const tablist = tablistRef.current;
-    if (!tablist) return;
-    let first = true; // ResizeObserver fires once on observe; skip it
-    const observer = new ResizeObserver(() => {
-      if (first) first = false;
-      else placeIndicator(false);
+    const observer = new ResizeObserver(() => placeIndicator(false));
+    Object.values(tabRefs.current).forEach((tab) => observer.observe(tab));
+    let cancelled = false;
+    void document.fonts.ready.then(() => {
+      if (!cancelled) placeIndicator(false);
     });
-    observer.observe(tablist);
-    tablist
-      .querySelectorAll('[role="tab"]')
-      .forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -77,12 +96,15 @@ export default function Work() {
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
+            ref={(el) => {
+              if (el) tabRefs.current[cat] = el;
+            }}
             role="tab"
             aria-selected={activeCategory === cat}
             onClick={() => setActiveCategory(cat)}
-            className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-colors duration-200 ${
+            className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-[color,translate] duration-300 ease-out motion-reduce:transition-none ${
               activeCategory === cat
-                ? "text-site-text"
+                ? "text-site-text -translate-y-px"
                 : "text-site-muted hover:text-site-text"
             }`}
           >
@@ -92,7 +114,7 @@ export default function Work() {
         <span
           ref={indicatorRef}
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-px left-0 h-0.5 bg-site-accent opacity-0 transition-[transform,width] duration-300 ease-out"
+          className="pointer-events-none absolute -bottom-px left-0 h-0.5 bg-site-accent opacity-0 transition-[transform,width] duration-300 ease-out motion-reduce:transition-none"
         />
       </div>
 

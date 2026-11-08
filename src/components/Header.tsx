@@ -1,14 +1,11 @@
-interface HeaderProps {
-  stuck: boolean;
-}
-
-export default function Header({ stuck }: HeaderProps) {
+// Sticky header that starts vertically centered over the h-screen Home section
+// and pins to the top once scrolled to. The fixed height (h-12 = 3rem) keeps the
+// centering math exact: the top margin puts it at 50vh - half its height, and
+// the negative bottom margin cancels its whole footprint so Home still starts
+// at the top of the page.
+export default function Header() {
   return (
-    <header
-      className={`left-0 w-full z-50 flex justify-between items-center bg-transparent  py-2 px-4 sm:px-6 transition-colors duration-300 ${
-        stuck ? "fixed top-0" : "absolute top-1/2 -translate-y-1/2"
-      }`}
-    >
+    <header className="sticky top-0 z-50 h-12 mt-[calc(50vh-1.5rem)] -mb-[calc(50vh+1.5rem)] w-full flex justify-between items-center bg-transparent px-4 sm:px-6">
       <nav className="flex w-full items-center justify-between text-lg">
         <a href="#work" className="header-btn">
           Work

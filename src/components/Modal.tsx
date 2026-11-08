@@ -13,14 +13,14 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      // Lock <html> only: overflow on <body> makes it a scroll container,
+      // which would break the sticky header while the modal is open.
       document.documentElement.style.overflow = "hidden";
       const raf = requestAnimationFrame(() => setVisible(true));
       return () => cancelAnimationFrame(raf);
     }
     const raf = requestAnimationFrame(() => setVisible(false));
     const t = setTimeout(() => {
-      document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     }, FADE_MS);
     return () => {

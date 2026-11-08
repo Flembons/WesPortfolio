@@ -21,10 +21,7 @@ export default function Work() {
     setSelectedProject(project);
     setModalOpen(true);
   };
-  const closeModal = () => {
-    setModalOpen(false);
-    setTimeout(() => setSelectedProject(null), 250);
-  };
+  const closeModal = () => setModalOpen(false);
 
   return (
     <div className="">
@@ -76,19 +73,29 @@ export default function Work() {
       ))}
 
       <Modal isOpen={modalOpen} onClose={closeModal}>
-        {selectedProject?.videoUrl ? (
-          <VideoPlayer videoUrl={selectedProject.videoUrl} />
-        ) : (
-          <StillsGallery images={selectedProject?.allImages ?? []} />
+        {selectedProject && (
+          <>
+            {selectedProject.videoUrl ? (
+              <VideoPlayer
+                key={selectedProject.title}
+                videoUrl={selectedProject.videoUrl}
+              />
+            ) : (
+              <StillsGallery
+                key={selectedProject.title}
+                images={selectedProject.allImages ?? []}
+              />
+            )}
+            <div className="flex flex-col gap-3">
+              <h2 className="project-title">{selectedProject.title}</h2>
+              {selectedProject.description && (
+                <p className="text-site-muted leading-relaxed">
+                  {selectedProject.description}
+                </p>
+              )}
+            </div>
+          </>
         )}
-        <div className="flex flex-col gap-3">
-          <h2 className="project-title">{selectedProject?.title}</h2>
-          {selectedProject?.description && (
-            <p className="text-site-muted leading-relaxed">
-              {selectedProject.description}
-            </p>
-          )}
-        </div>
       </Modal>
     </div>
   );

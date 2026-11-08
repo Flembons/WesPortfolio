@@ -33,7 +33,7 @@ Single-page film/photo portfolio with no router. `App.tsx` stacks `Home`, `Work`
 
 **Work page flow** (`src/pages/Work.tsx`): category tabs toggle visibility with `hidden` (all tabs stay mounted). Clicking a project opens one shared `Modal`. The modal shows `VideoPlayer` if `videoUrl` is set, otherwise `StillsGallery` with `allImages`. A project with neither is not clickable. `VideoPlayer` shows a thumbnail placeholder while the iframe loads: YouTube thumbnails come from the video ID, Vimeo thumbnails from the Vimeo oEmbed API.
 
-**Modal timing**: `Modal` fades over `FADE_MS` (250ms) and locks body/html scroll while open. `Work.closeModal` clears the selected project after a matching 250ms timeout so content doesn't vanish mid-fade. Keep these in sync if you change one.
+**Modal timing**: `Modal` fades over `FADE_MS` (250ms) and locks `<html>` scroll while open. Its children stay mounted through the fade-out, then unmount, so a closed modal holds no gallery state or key listeners. Callers just set `isOpen` false and leave their selection in place (don't clear it on close, or content vanishes mid-fade). Galleries inside are keyed by project/photo so each open starts fresh. The close button sits above the content, which is wrapped in `isolate` so its z-indexes can't cover it.
 
 ## Adding content
 

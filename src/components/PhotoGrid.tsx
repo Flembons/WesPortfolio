@@ -13,8 +13,6 @@ interface PhotoGridProps {
   photos: Photo[];
 }
 
-const MODAL_FADE_MS = 250;
-
 export default function PhotoGrid({ photos }: PhotoGridProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,10 +23,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
     setModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-    setTimeout(() => setSelectedIndex(null), MODAL_FADE_MS);
-  };
+  const closeModal = () => setModalOpen(false);
 
   const markLoaded = (src: string) => {
     setLoadedSrcs((prev) => new Set(prev).add(src));

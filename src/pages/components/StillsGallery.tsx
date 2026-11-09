@@ -96,7 +96,7 @@ export default function StillsGallery({
         <button
           onClick={() => goTo((current - 1 + images.length) % images.length)}
           aria-label="Previous image"
-          className={`absolute z-20 cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+          className={`absolute z-20 cursor-pointer left-2 sm:left-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center focus-visible:opacity-100 ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ export default function StillsGallery({
         <button
           onClick={() => goTo((current + 1) % images.length)}
           aria-label="Next image"
-          className={`absolute z-20 cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
+          className={`absolute z-20 cursor-pointer right-2 sm:right-4 top-1/2 -translate-y-1/2 transition-opacity duration-200 text-white bg-black/40 rounded-full w-9 h-9 flex items-center justify-center focus-visible:opacity-100 ${mobileControls || hovered ? "opacity-100" : "opacity-0"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

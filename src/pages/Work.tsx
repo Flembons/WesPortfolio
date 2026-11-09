@@ -10,6 +10,9 @@ import type { Category, Project as ProjectData } from "../data";
 
 const CATEGORIES: Category[] = ["Selected", "Narrative", "Photography"];
 
+const tabId = (cat: Category) => `work-tab-${cat.toLowerCase()}`;
+const panelId = (cat: Category) => `work-panel-${cat.toLowerCase()}`;
+
 export default function Work() {
   const [activeCategory, setActiveCategory] = useState<Category>("Selected");
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
@@ -22,6 +25,26 @@ export default function Work() {
     setModalOpen(true);
   };
   const closeModal = () => setModalOpen(false);
+
+  // Arrow keys / Home / End move between tabs, per the WAI-ARIA tabs pattern.
+  const handleTabKey = (e: React.KeyboardEvent) => {
+    // Leave browser shortcuts like Alt/Cmd+Left (history back) alone.
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const i = CATEGORIES.indexOf(activeCategory);
+    const next = (
+      {
+        ArrowRight: i + 1,
+        ArrowLeft: i - 1,
+        Home: 0,
+        End: CATEGORIES.length - 1,
+      } as Record<string, number>
+    )[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    const cat = CATEGORIES[(next + CATEGORIES.length) % CATEGORIES.length];
+    setActiveCategory(cat);
+    tabRefs.current[cat]?.focus();
+  };
 
   // Slide the accent bar under the active tab. Written straight to the DOM so
   // the first placement (and resizes) can skip the transition.
@@ -91,6 +114,7 @@ export default function Work() {
         ref={tablistRef}
         role="tablist"
         aria-label="Work categories"
+        onKeyDown={handleTabKey}
         className="relative flex mx-4 gap-8 mb-10 border-b border-site-border"
       >
         {CATEGORIES.map((cat) => (
@@ -99,8 +123,11 @@ export default function Work() {
             ref={(el) => {
               if (el) tabRefs.current[cat] = el;
             }}
+            id={tabId(cat)}
             role="tab"
             aria-selected={activeCategory === cat}
+            aria-controls={panelId(cat)}
+            tabIndex={activeCategory === cat ? 0 : -1}
             onClick={() => setActiveCategory(cat)}
             className={`cursor-pointer pb-3 text-sm font-semibold tracking-widest uppercase transition-[color,translate] duration-300 ease-out motion-reduce:transition-none ${
               activeCategory === cat
@@ -121,6 +148,9 @@ export default function Work() {
       {CATEGORIES.map((cat) => (
         <div
           key={cat}
+          id={panelId(cat)}
+          role="tabpanel"
+          aria-labelledby={tabId(cat)}
           className={`flex sm:px-4 flex-col gap-6 ${activeCategory === cat ? "" : "hidden"}`}
         >
           {cat === "Photography" ? (
@@ -143,13 +173,18 @@ export default function Work() {
         </div>
       ))}
 
-      <Modal isOpen={modalOpen} onClose={closeModal}>
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        label={selectedProject?.title ?? "Project"}
+      >
         {selectedProject && (
           <>
             {selectedProject.videoUrl ? (
               <VideoPlayer
                 key={selectedProject.title}
                 videoUrl={selectedProject.videoUrl}
+                title={selectedProject.title}
               />
             ) : (
               <StillsGallery

@@ -28,7 +28,7 @@ function InstagramIcon() {
 
 export default function Footer() {
   return (
-    <footer className="sticky top-0 text-xs z-50 flex h-16 justify-between items-start p-4 w-full bg-black">
+    <footer className="text-xs flex h-16 justify-between items-start p-4 w-full bg-black">
       <div className="flex gap-2 text-site-text">
         <span>&copy; {new Date().getFullYear()}</span>
         <span>Weston Flemmons</span>

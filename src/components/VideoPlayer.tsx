@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 interface VideoPlayerProps {
   videoUrl: string;
+  title: string;
 }
 
 function getYouTubeThumbnails(videoUrl: string) {
@@ -13,7 +14,7 @@ function getYouTubeThumbnails(videoUrl: string) {
   };
 }
 
-export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
+export default function VideoPlayer({ videoUrl, title }: VideoPlayerProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [vimeoThumbSmall, setVimeoThumbSmall] = useState<string | null>(null);
   const [vimeoThumbFull, setVimeoThumbFull] = useState<string | null>(null);
@@ -36,8 +37,13 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
         signal: controller.signal,
       },
     )
-      .then((r) => r.json())
-      .then(({ thumbnail_url }: { thumbnail_url: string }) => {
+      .then((r) => {
+        if (!r.ok) throw new Error(`oEmbed ${r.status}`);
+        return r.json();
+      })
+      .then(({ thumbnail_url }: { thumbnail_url?: string }) => {
+        // No thumbnail just means no placeholder; the video still loads.
+        if (!thumbnail_url) return;
         setVimeoThumbSmall(thumbnail_url);
         setVimeoThumbFull(
           thumbnail_url.replace(/_(\d+)x(\d+)(\.\w+)$/, "_1280x720$3"),
@@ -52,6 +58,7 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     <div className="w-full aspect-video relative overflow-hidden">
       <iframe
         src={videoUrl.replace(/[&?]autoplay=1/, "")}
+        title={title}
         className="w-full h-full"
         allow="fullscreen; picture-in-picture"
         onLoad={() => setVideoLoaded(true)}

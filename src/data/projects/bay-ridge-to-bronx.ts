@@ -1,19 +1,20 @@
 import { wsrv } from "../../lib/wsrv";
 import type { Project } from "../types";
 
+// The thumbnails double as the first three stills in the gallery.
+const images: Project["images"] = [
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABKThyMy81AOKF_dLKbjdpE/BR2TB%20STILLS/COLOR%2002_01_02_26_19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nha1f2dd&raw=1"),
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AKkZDwVrfisBdXsvHdLlF-M/BR2TB%20STILLS/COLOR%2002_01_03_11_11.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=p73tzs6o&raw=1"),
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ADd7v5MMTfphgox1tHiHZBk/BR2TB%20STILLS/COLOR%2002_01_04_10_02.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nlonxngx&raw=1"),
+];
+
 const project: Project = {
   title: "Bay Ridge to the Bronx",
-  images: [
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABKThyMy81AOKF_dLKbjdpE/BR2TB%20STILLS/COLOR%2002_01_02_26_19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nha1f2dd&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AKkZDwVrfisBdXsvHdLlF-M/BR2TB%20STILLS/COLOR%2002_01_03_11_11.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=p73tzs6o&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ADd7v5MMTfphgox1tHiHZBk/BR2TB%20STILLS/COLOR%2002_01_04_10_02.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nlonxngx&raw=1"),
-  ],
+  images,
   description:
     "This short film follows Tony, a young man from Bay Ridge whose parents are away. After attending confession at his local church, he receives a call from his father with difficult news: Tony's grandfather is gravely ill and nearing the end of his life. Tasked with representing his family, Tony must travel to the Bronx to witness his grandfather's final moments.",
   allImages: [
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABKThyMy81AOKF_dLKbjdpE/BR2TB%20STILLS/COLOR%2002_01_02_26_19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nha1f2dd&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AKkZDwVrfisBdXsvHdLlF-M/BR2TB%20STILLS/COLOR%2002_01_03_11_11.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=p73tzs6o&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ADd7v5MMTfphgox1tHiHZBk/BR2TB%20STILLS/COLOR%2002_01_04_10_02.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=nlonxngx&raw=1"),
+    ...images,
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AOky_73-5tZCn2yoC-xUTxw/BR2TB%20STILLS/COLOR%2002_01_05_13_07.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=wac749cz&raw=1"),
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/APkrRnt_7sG89025kN2qcBI/BR2TB%20STILLS/COLOR%2002_01_05_41_17.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=joewiulz&raw=1"),
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AFX-vG6DNmqnLNSdaaFrcNY/BR2TB%20STILLS/COLOR%2002_01_05_53_20.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=0z2mjh3w&raw=1"),

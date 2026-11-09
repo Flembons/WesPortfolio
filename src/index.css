@@ -110,24 +110,6 @@
   --color-site-muted: #aeaca8;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -136,17 +118,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fade-out-down {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(14px);
   }
 }
 
@@ -171,21 +142,8 @@
     @apply text-xl font-bold italic text-site-text;
   }
 
-  .mobile-nav-overlay {
-    animation: fade-in 200ms ease-out forwards;
-  }
-
-  .mobile-nav-overlay-exit {
-    animation: fade-out 300ms ease-in forwards;
-  }
-
-  .mobile-nav-link {
-    opacity: 0;
-    animation: fade-in-up 300ms ease-out forwards;
-  }
-
-  .mobile-nav-link-exit {
-    animation: fade-out-down 160ms ease-in forwards;
+  .focus-ring {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-accent;
   }
 }
 

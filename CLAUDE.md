@@ -33,7 +33,7 @@ Single-page film/photo portfolio with no router. `App.tsx` stacks `Home`, `Work`
 
 **Work page flow** (`src/pages/Work.tsx`): category tabs toggle visibility with `hidden` (all tabs stay mounted). Clicking a project opens one shared `Modal`. The modal shows `VideoPlayer` if `videoUrl` is set, otherwise `StillsGallery` with `allImages`. A project with neither is not clickable. `VideoPlayer` shows a thumbnail placeholder while the iframe loads: YouTube thumbnails come from the video ID, Vimeo thumbnails from the Vimeo oEmbed API.
 
-**Modal timing**: `Modal` fades over `FADE_MS` (250ms) and locks `<html>` scroll while open. Its children stay mounted through the fade-out, then unmount, so a closed modal holds no gallery state or key listeners. Callers just set `isOpen` false and leave their selection in place (don't clear it on close, or content vanishes mid-fade). Galleries inside are keyed by project/photo so each open starts fresh. The close button sits above the content, which is wrapped in `isolate` so its z-indexes can't cover it.
+**Modal timing**: `Modal` fades over `FADE_MS` (250ms) and locks `<html>` scroll while open. Its children stay mounted through the fade-out, then unmount, so a closed modal holds no gallery state or key listeners. Callers just set `isOpen` false and leave their selection in place (don't clear it on close, or content vanishes mid-fade). Galleries inside are keyed by project/photo so each open starts fresh. The close button sits above the content, which is wrapped in `isolate` so its z-indexes can't cover it. `Modal` is a native `<dialog>` opened with `showModal()`, so the browser traps focus, makes the page inert and returns focus to the opener on `close()` (which runs after the fade). It needs a `label`. Escape is caught in `onCancel` so the fade still runs. Clickable cards focus themselves on click because Safari doesn't, so focus can come back to them.
 
 ## Adding content
 
@@ -50,6 +50,8 @@ const project: Project = {
   videoUrl: "https://player.vimeo.com/video/123456789?h=abc123&autoplay=1&title=0&byline=0&portrait=0",
   // or, for a stills gallery instead of a video:
   // allImages: [wsrv("..."), ...],
+  // To reuse the thumbnails as the first stills, pull them into a `const images`
+  // and write `allImages: [...images, ...]` (see burp.ts).
 };
 
 export default project;
@@ -63,4 +65,4 @@ export default project;
 
 ## Styling
 
-Theme colors are Tailwind v4 `@theme` tokens in `src/index.css` (`site-bg`, `site-text`, `site-accent`, `site-border`, `site-muted`), used as classes like `text-site-muted`. A commented-out light palette sits next to the active dark one. Shared component classes (`.project-title`, `.header-btn`, mobile-nav animations, `.fade-in-scroll`) are defined in `@layer components` there. The site font is the self-hosted Helixa family in `public/fonts/`.
+Theme colors are Tailwind v4 `@theme` tokens in `src/index.css` (`site-bg`, `site-text`, `site-accent`, `site-border`, `site-muted`), used as classes like `text-site-muted`. A commented-out light palette sits next to the active dark one. Shared component classes (`.project-title`, `.header-btn`, `.fade-in-scroll`, `.focus-ring`) are defined in `@layer components` there. The site font is the self-hosted Helixa family in `public/fonts/`.

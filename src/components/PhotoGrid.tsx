@@ -39,7 +39,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
         ))}
       </div>
 
-      <Modal isOpen={modalOpen} onClose={closeModal}>
+      <Modal isOpen={modalOpen} onClose={closeModal} label="Photographs">
         <StillsGallery
           key={selectedIndex ?? 0}
           images={photos.map((photo) => photo.src)}
@@ -64,13 +64,19 @@ function GridPhoto({ photo, alt, onClick }: GridPhotoProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div
-      className="relative overflow-hidden bg-site-border cursor-pointer"
+    <button
+      type="button"
+      className="relative block w-full overflow-hidden bg-site-border cursor-pointer focus-ring"
       style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
-      onClick={onClick}
+      onClick={(e) => {
+        // Safari doesn't focus buttons on click; focusing here lets the
+        // modal return focus to this photo when it closes.
+        e.currentTarget.focus();
+        onClick();
+      }}
     >
       {!loaded && (
-        <div className="absolute inset-0 animate-pulse bg-site-border" />
+        <span className="absolute inset-0 animate-pulse bg-site-border" />
       )}
       <img
         src={photo.src}
@@ -86,6 +92,6 @@ function GridPhoto({ photo, alt, onClick }: GridPhotoProps) {
           loaded ? "opacity-100" : "opacity-0"
         }`}
       />
-    </div>
+    </button>
   );
 }

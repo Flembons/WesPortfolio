@@ -1,19 +1,20 @@
 import { wsrv } from "../../lib/wsrv";
 import type { Project } from "../types";
 
+// The thumbnails double as the first three stills in the gallery.
+const images: Project["images"] = [
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AG5myIm7lT4HhBxo9iX81qI/BURP%20stills/Still%202026-05-19%20221502_1.1.17.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=gia48uis&raw=1"),
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AN52ubryKdbH_ufjrUIWzY8/BURP%20stills/Still%202026-05-19%20221502_1.1.18.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=257j2og5&raw=1"),
+  wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABbte6xGLifKZvOGu9oYGTc/BURP%20stills/Still%202026-05-19%20221502_1.1.19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=f726e03x&raw=1"),
+];
+
 const project: Project = {
   title: "BURP",
-  images: [
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AG5myIm7lT4HhBxo9iX81qI/BURP%20stills/Still%202026-05-19%20221502_1.1.17.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=gia48uis&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AN52ubryKdbH_ufjrUIWzY8/BURP%20stills/Still%202026-05-19%20221502_1.1.18.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=257j2og5&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABbte6xGLifKZvOGu9oYGTc/BURP%20stills/Still%202026-05-19%20221502_1.1.19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=f726e03x&raw=1"),
-  ],
+  images,
   description:
     "When a young woman hesitates on the day of her abortion, she's pulled into the surreal underworld of Manhattan's Chinatown — where an opera singer, two bumbling thugs, and a cat-Xanax ring fronting as a dumpling shop blur the lines between grief and absurdity.",
   allImages: [
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AG5myIm7lT4HhBxo9iX81qI/BURP%20stills/Still%202026-05-19%20221502_1.1.17.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=gia48uis&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/AN52ubryKdbH_ufjrUIWzY8/BURP%20stills/Still%202026-05-19%20221502_1.1.18.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=257j2og5&raw=1"),
-    wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ABbte6xGLifKZvOGu9oYGTc/BURP%20stills/Still%202026-05-19%20221502_1.1.19.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=f726e03x&raw=1"),
+    ...images,
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ALCnMGiSUCugKvTNS-U2Jaw/BURP%20stills/Still%202026-05-19%20221502_1.1.20.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=6nv0m9bf&raw=1"),
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ADuL5o3JD28cJ1z3PH433eQ/BURP%20stills/Still%202026-05-19%20221502_1.1.21.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=0nv349pz&raw=1"),
     wsrv("https://www.dropbox.com/scl/fo/hjd8xrj53jkfrrf73i39n/ALq7JXhC4L4lpXZs6s0Fqoo/BURP%20stills/Still%202026-05-19%20221502_1.1.22.jpg?rlkey=jbpnq43atuaism6bl3se8k0uy&st=0j7tiqjz&raw=1"),
